@@ -1,6 +1,7 @@
 package com.cm.curd;
 
 import java.util.List;
+import java.util.Scanner;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -12,8 +13,8 @@ public class CurdMain {
 	public static void main(String[] args) {
 		sessionFactory = HibernateUtil.getSessionFactory();
 		CurdMain main = new CurdMain();
-		//main.addUser();
-		main.getUsers(null);
+		main.addUser(null);
+		/*main.getUsers(null);
 		main.getUserByIdUsingLoad(1,null);
 		main.updateUser(2,null);
 		main.getUserByIdUsingLoad(2,null);
@@ -26,7 +27,7 @@ public class CurdMain {
 		main.updateUser(2,session);
 		main.getUserByIdUsingLoad(2,session);
 		main.getUserByIdUsingGet(2,session);
-		session.close();
+		session.close();*/
 		
 		sessionFactory.close();
 		
@@ -42,10 +43,15 @@ public class CurdMain {
 		session.beginTransaction();
 		
 		UserDetail userDetail = new UserDetail();
-		userDetail.setFirstname("chinmaya");
-		userDetail.setLastName("mahunta");
-		userDetail.setUsername("chinmayak");
-		userDetail.setPassword("chinmayak");
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("First name: ");
+		userDetail.setFirstname(scanner.nextLine());
+		System.out.print("Last name: ");
+		userDetail.setLastName(scanner.nextLine());
+		System.out.print("Username: ");
+		userDetail.setUsername(scanner.nextLine());
+		System.out.print("Password: ");
+		userDetail.setPassword(scanner.nextLine());
 		
 		session.save(userDetail);
 		session.getTransaction().commit();

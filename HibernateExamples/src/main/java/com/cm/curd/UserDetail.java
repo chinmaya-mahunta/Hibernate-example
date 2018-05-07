@@ -4,7 +4,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
+@NamedQueries({
+	@NamedQuery(
+			name="getAllUsers",
+			query="FROM UserDetail user"),
+	@NamedQuery(
+			name="getUserByUsername",
+			query="FROM UserDetail user WHERE user.Username =:username")
+})
+
+
 
 @Entity
 @Table(name="UserDetail")
